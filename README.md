@@ -1,2 +1,12 @@
 # template-jekyll
-Docker template for jekyllrb local building
+
+Конфигурация была написана для того, чтобы не тащить Ruby в систему хоста.
+
+Команда
+
+```
+  make new
+```
+
+по умолчанию устанавливает в Docker сборку Ruby после чего инсталлирует Jekyll
+и создает новый блог в папке `my-blog`.
