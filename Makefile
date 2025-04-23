@@ -1,4 +1,7 @@
 .PHONY: *
 
 new:
-	docker compose run jeckyll-server sh -c "jekyll new my-blog" --build
+	MODE_ENV="new" docker compose up --build
+
+up:
+	MODE_ENV="serve" docker compose up --build
