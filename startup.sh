@@ -22,7 +22,7 @@ case "${MODE_ENV}" in
              echo "Ошибка: Папка ${SITE_DIR} уже существует"
              exit 1
          fi
-         git clone ${GITHUB_REPO_HTTP} ${SITE_DIR}
+         GIT_SSH_COMMAND="ssh -i ~/.ssh/${GITHUB_KEY_NAME}" git clone ${GITHUB_REPO_HTTP} ${SITE_DIR}
          cd ${SITE_DIR}
          git checkout ${BRANCH}
          echo "Готово! Репозиторий склонирован в ${SITE_DIR}"
