@@ -29,6 +29,11 @@ case "${MODE_ENV}" in
          ../bin/git-set-local.sh
          ../bin/git-set-remotes.sh
     ;;
+    anonimize)
+        echo "Исправление всей истории коммитов на ${GITHUB_USER_NAME} ${GITHUB_USER_EMAIL} ${GITHUB_USER_NAME} ${GITHUB_USER_EMAIL}"
+        cd ${SITE_DIR}
+        ../bin/git-reset-author.sh
+    ;;
     serve)
         if [ ! -d "${SITE_DIR}" ]; then
             echo "Ошибка: Папка ${SITE_DIR} не существует. Сначала выполните:"
