@@ -8,4 +8,9 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /src
 
-RUN ruby --version && gem install jekyll
+# USER user
+ENV MODE_ENV='undefined env'
+
+RUN ruby --version && gem install bundler jekyll
+
+CMD [ "./startup.sh" ]
