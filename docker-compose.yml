@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  jeckyll-server:
+    build: .
+    ports:
+      - "1313:1313"
+    command: "tail -f /dev/null"
+    volumes:
+      - ./:/src
