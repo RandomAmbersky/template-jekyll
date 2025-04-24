@@ -20,7 +20,7 @@ start_by_env:
 
 clone:
 	@echo $(ENV_FILE)
-	MODE_ENV="clone" ./startup.sh
+	MODE_ENV="clone" ./bin/startup.sh
 
 new:
 	MODE_ENV="new" docker compose up --build

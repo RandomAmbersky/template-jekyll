@@ -6,7 +6,7 @@ set -e
 echo "MODE_ENV=${MODE_ENV}"
 
 # Настройки репозитория (замените на свои)
-# GITHUB_REPO_HTTP="https://github.com/username/repo.git"
+# GITHUB_REPO="https://github.com/username/repo.git"
 # SITE_DIR="my-awesome-site"
 # BRANCH="main"  # или "gh-pages" для GitHub Pages
 
@@ -17,15 +17,17 @@ case "${MODE_ENV}" in
         echo "Готово! Новый сайт создан в папке ${SITE_DIR}"
     ;;
     clone)
-         echo "Клонирование репозитория ${GITHUB_REPO_HTTP}"
+         echo "Клонирование репозитория ${GITHUB_REPO}"
          if [ -d "${SITE_DIR}" ]; then
              echo "Ошибка: Папка ${SITE_DIR} уже существует"
              exit 1
          fi
-         GIT_SSH_COMMAND="ssh -i ~/.ssh/${GITHUB_KEY_NAME}" git clone ${GITHUB_REPO_HTTP} ${SITE_DIR}
+         GIT_SSH_COMMAND="ssh -i ~/.ssh/${GITHUB_KEY_NAME}" git clone ${GITHUB_REPO} ${SITE_DIR}
          cd ${SITE_DIR}
          git checkout ${BRANCH}
          echo "Готово! Репозиторий склонирован в ${SITE_DIR}"
+         ../bin/git-set-local.sh
+         # ../bin/git-set-remotes.sh
     ;;
     serve)
         if [ ! -d "${SITE_DIR}" ]; then

@@ -13,4 +13,4 @@ ENV MODE_ENV='undefined env'
 
 RUN ruby --version && gem install bundler jekyll
 
-CMD [ "./startup.sh" ]
+CMD [ "./bin/startup.sh" ]
