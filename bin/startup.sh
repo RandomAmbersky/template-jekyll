@@ -27,7 +27,7 @@ case "${MODE_ENV}" in
          git checkout ${BRANCH}
          echo "Готово! Репозиторий склонирован в ${SITE_DIR}"
          ../bin/git-set-local.sh
-         # ../bin/git-set-remotes.sh
+         ../bin/git-set-remotes.sh
     ;;
     serve)
         if [ ! -d "${SITE_DIR}" ]; then
