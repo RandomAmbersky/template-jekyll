@@ -6,23 +6,23 @@ set -e
 echo "MODE_ENV=${MODE_ENV}"
 
 # Настройки репозитория (замените на свои)
-GITHUB_REPO="https://github.com/username/repo.git"
-SITE_DIR="my-awesome-site"
-BRANCH="main"  # или "gh-pages" для GitHub Pages
+# GITHUB_REPO_HTTP="https://github.com/username/repo.git"
+# SITE_DIR="my-awesome-site"
+# BRANCH="main"  # или "gh-pages" для GitHub Pages
 
 case "${MODE_ENV}" in
     new)
         echo "Создание нового сайта Jekyll"
-        jekyll new my-awesome-site
+        jekyll new ${SITE_DIR}
         echo "Готово! Новый сайт создан в папке ${SITE_DIR}"
     ;;
     clone)
-         echo "Клонирование репозитория ${GITHUB_REPO}"
+         echo "Клонирование репозитория ${GITHUB_REPO_HTTP}"
          if [ -d "${SITE_DIR}" ]; then
              echo "Ошибка: Папка ${SITE_DIR} уже существует"
              exit 1
          fi
-         git clone ${GITHUB_REPO} ${SITE_DIR}
+         git clone ${GITHUB_REPO_HTTP} ${SITE_DIR}
          cd ${SITE_DIR}
          git checkout ${BRANCH}
          echo "Готово! Репозиторий склонирован в ${SITE_DIR}"
