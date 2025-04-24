@@ -55,6 +55,12 @@ case "${MODE_ENV}" in
         git push origin ${BRANCH}
         echo "Changes pushed to GitHub"
     ;;
+    push-force)
+        echo "Try push force..."
+        cd ${SITE_DIR}
+        git push origin ${BRANCH} --force
+        echo "Changes forced pushed to GitHub"
+    ;;
     loop)
         tail -f /dev/null
     ;;

@@ -29,6 +29,9 @@ anon:
 push:
 	MODE_ENV="push" ./bin/startup.sh
 
+push-force:
+	MODE_ENV="push-force" ./bin/startup.sh
+
 new:
 	MODE_ENV="new" docker compose up --build
 
