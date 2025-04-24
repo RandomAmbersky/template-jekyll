@@ -12,6 +12,8 @@ RUN gem install github-pages -v "232" --no-document
 
 USER jekylluser
 
+RUN bundle config set --global path 'vendor/bundle'
+
 WORKDIR /src
 
 ENV MODE_ENV='undefined env'
