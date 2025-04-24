@@ -20,7 +20,7 @@ start_by_env:
 
 clone:
 	@echo $(ENV_FILE)
-	MODE_ENV="clone" ./bin/
+	MODE_ENV="clone" ./bin/startup.sh
 
 anon:
 	@echo $(ENV_FILE)

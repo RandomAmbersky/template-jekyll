@@ -13,11 +13,30 @@ echo "MODE_ENV=${MODE_ENV}"
 case "${MODE_ENV}" in
     new)
         echo "Создание нового сайта Jekyll"
-        jekyll new ${SITE_DIR}
+        jekyll -v
+
+        # 1. Создаём временную папку в /tmp
+        TEMP_DIR="/tmp/${SITE_DIR}_1"
+        jekyll new ${TEMP_DIR} --force --skip-bundle
+
+        # 2. Проверяем, существует ли целевая папка SITE_DIR
+        if [ ! -d "$SITE_DIR" ]; then
+            echo "Папка $SITE_DIR не найдена. Создаём..."
+            mkdir -p "$SITE_DIR"
+        fi
+
+        # 3. Копируем содержимое из /tmp в SITE_DIR
+        echo "Копируем файлы из $TEMP_DIR в $SITE_DIR..."
+        cp -R "$TEMP_DIR"/. "$SITE_DIR"/
+
+        # 4. Удаляем временную папку (опционально)
+        rm -rf "$TEMP_DIR"
+
         echo "Готово! Новый сайт создан в папке ${SITE_DIR}"
     ;;
     clone)
          echo "Клонирование репозитория ${GITHUB_REPO}"
+
          if [ -d "${SITE_DIR}" ]; then
              echo "Ошибка: Папка ${SITE_DIR} уже существует"
              exit 1
@@ -45,8 +64,7 @@ case "${MODE_ENV}" in
 
         cd ${SITE_DIR}
 
-        bundle check || bundle install
-        bundle exec jekyll serve --force_polling --livereload --host 0.0.0.0
+        jekyll serve --force_polling --livereload --host 0.0.0.0
     ;;
     push)
         cd ${SITE_DIR}

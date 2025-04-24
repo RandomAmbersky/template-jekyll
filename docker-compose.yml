@@ -1,10 +1,12 @@
-version: "3.8"
-
 services:
   jeckyll-server:
+    environment:
+      - MODE_ENV
+    env_file:
+      - ".env"
     build: .
     ports:
       - "1313:1313"
-    command: "tail -f /dev/null"
+    # command: "tail -f /dev/null"
     volumes:
       - ./:/src
