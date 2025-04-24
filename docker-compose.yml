@@ -6,7 +6,8 @@ services:
       - ".env"
     build: .
     ports:
-      - "1313:1313"
+      - "35729:35729"
+      - "4000:4000"
     # command: "tail -f /dev/null"
     volumes:
       - ./:/src

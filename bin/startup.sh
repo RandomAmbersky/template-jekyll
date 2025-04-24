@@ -3,6 +3,11 @@
 # exit when any command fails
 set -e
 
+if [ "$(id -u)" -eq 0 ]; then
+    echo "Не запускайте скрипт от root!"
+    exit 1
+fi
+
 echo "MODE_ENV=${MODE_ENV}"
 
 # Настройки репозитория (замените на свои)
@@ -46,7 +51,6 @@ case "${MODE_ENV}" in
          git checkout ${BRANCH}
          echo "Готово! Репозиторий склонирован в ${SITE_DIR}"
          ../bin/git-set-local.sh
-         ../bin/git-set-remotes.sh
     ;;
     anonimize)
         echo "Исправление всей истории коммитов на ${GITHUB_USER_NAME} ${GITHUB_USER_EMAIL} ${GITHUB_USER_NAME} ${GITHUB_USER_EMAIL}"
@@ -64,7 +68,8 @@ case "${MODE_ENV}" in
 
         cd ${SITE_DIR}
 
-        jekyll serve --force_polling --livereload --host 0.0.0.0
+        bundle config set path 'vendor/bundle' && bundle check || bundle install
+        bundle exec jekyll serve --force_polling --livereload --host 0.0.0.0
     ;;
     push)
         cd ${SITE_DIR}
