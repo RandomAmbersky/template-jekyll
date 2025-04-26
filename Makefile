@@ -1,9 +1,5 @@
 .PHONY: *
 
-# Загружаем переменные из .env
-# ENV_FILE := $(shell cat .env 2>/dev/null)
-# export $(ENV_FILE)
-
 .EXPORT_ALL_VARIABLES:
 -include .env
 
