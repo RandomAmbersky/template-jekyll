@@ -43,7 +43,7 @@ case "${MODE_ENV}" in
          fi
          GIT_SSH_COMMAND="ssh -i ~/.ssh/${GITHUB_KEY_NAME}" git clone ${GITHUB_REPO} ${SITE_DIR}
          cd ${SITE_DIR}
-         git checkout ${BRANCH}
+         git checkout ${GITHUB_BRANCH}
          echo "Готово! Репозиторий склонирован в ${SITE_DIR}"
          ../bin/git-set-local.sh
     ;;
@@ -70,13 +70,13 @@ case "${MODE_ENV}" in
         cd ${SITE_DIR}
         git add .
         git commit -m "Update site content"
-        git push origin ${BRANCH}
+        git push origin ${GITHUB_BRANCH}
         echo "Changes pushed to GitHub"
     ;;
     push-force)
         echo "Try push force..."
         cd ${SITE_DIR}
-        git push origin ${BRANCH} --force
+        git push origin ${GITHUB_BRANCH} --force
         echo "Changes forced pushed to GitHub"
     ;;
     loop)

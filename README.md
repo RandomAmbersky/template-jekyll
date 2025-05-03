@@ -35,7 +35,7 @@
   GITHUB_BRANCH - ветка git (main)
   SITE_DIR - имя локальной папки блога (my-awesome-site)
   GITHUB_REPO - адрес гит-репозитория (git@github.com:username/username.github.io.git)
-  ITHUB_KEY_NAME - имя ключа git (ed_username)
+  GITHUB_KEY_NAME - имя ключа git (ed_username)
   GITHUB_USER_NAME - имя пользователя git, который будет указан в коммите (username)
   GITHUB_USER_EMAIL - е-майл пользователя git, который будет указан коммите (username@username.com)
 ```
