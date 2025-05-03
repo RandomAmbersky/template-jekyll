@@ -1,2 +1,6 @@
+.idea
 my-awesome-site
 .DS_Store
+.env
+.env-*
+!.env-example
