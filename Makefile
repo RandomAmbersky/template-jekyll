@@ -1,6 +1,6 @@
 .PHONY: *
 
-ENV ?= .env_default
+ENV ?= .env
 
 ifneq ("$(wildcard $(ENV))","")
     include $(ENV)
