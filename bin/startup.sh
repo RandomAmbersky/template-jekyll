@@ -10,11 +10,6 @@ fi
 
 echo "MODE_ENV=${MODE_ENV}"
 
-# Настройки репозитория (замените на свои)
-# GITHUB_REPO="https://github.com/username/repo.git"
-# SITE_DIR="my-awesome-site"
-# BRANCH="main"  # или "gh-pages" для GitHub Pages
-
 case "${MODE_ENV}" in
     new)
         echo "Создание нового сайта Jekyll"

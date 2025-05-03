@@ -1,25 +1,37 @@
 .PHONY: *
 
-.EXPORT_ALL_VARIABLES:
--include .env
+ENV ?= .env_default
+
+ifneq ("$(wildcard $(ENV))","")
+    include $(ENV)
+    # Экспортируем все переменные из .env файла
+    export $(shell sed 's/=.*//' $(ENV))
+else
+    $(error Файл окружения $(ENV) не найден!)
+endif
+
+@echo "ENV is: $(ENV)"
+
+# .EXPORT_ALL_VARIABLES:
+# -include ${ENV}
 
 # shortcut for other modes - eq:  make mloop , make mserve
-m%:
-	make start_by_env MODE_ENV=$*
+# m%:
+	# make start_by_env MODE_ENV=$*
 
 debug:
-	@echo $(ENV_FILE)
+	@echo "ENV: $(ENV)"
+	@echo "MAKECMDGOALS: $(MAKECMDGOALS)"
 	@echo "GITHUB_REPO is [$(GITHUB_REPO)]"
 
 start_by_env:
 	MODE_ENV=${MODE_ENV} docker compose up --build
 
 clone:
-	@echo $(ENV_FILE)
-	MODE_ENV="clone" ./bin/startup.sh
+	@echo "GITHUB_REPO: $(GITHUB_REPO)"
+	@MODE_ENV="clone" ./bin/startup.sh
 
 anon:
-	@echo $(ENV_FILE)
 	MODE_ENV="anonimize" ./bin/startup.sh
 
 push:
@@ -36,3 +48,7 @@ loop:
 
 serve:
 	MODE_ENV="serve" docker compose up --build
+
+# Игнорируем все, что не является явной целью
+%:
+	@true

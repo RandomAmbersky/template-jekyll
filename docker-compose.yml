@@ -3,7 +3,7 @@ services:
     environment:
       - MODE_ENV
     env_file:
-      - ".env"
+      - ${ENV:-.env_default} # Значение по умолчанию
     build: .
     ports:
       - "35729:35729"
