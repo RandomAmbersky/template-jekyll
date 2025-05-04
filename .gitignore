@@ -1,5 +1,6 @@
 .idea
 my-awesome-site
+Gemfile.lock
 .DS_Store
 .env
 .env-*
