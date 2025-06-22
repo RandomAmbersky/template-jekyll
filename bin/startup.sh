@@ -63,8 +63,9 @@ case "${MODE_ENV}" in
 
         cd ${SITE_DIR}
 
-        bundle config set --global path '~/bundle' && bundle check || bundle install
-        bundle exec jekyll serve --force_polling --livereload --host 0.0.0.0
+        # bundle config set --global path '~/bundle' && bundle check || bundle install
+        # bundle exec jekyll serve --force_polling --livereload --host 0.0.0.0
+        jekyll serve --force_polling --livereload --host 0.0.0.0
     ;;
     push)
         cd ${SITE_DIR}

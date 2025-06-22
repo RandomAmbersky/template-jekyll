@@ -12,7 +12,7 @@ RUN gem install github-pages -v "232" --no-document
 
 USER jekylluser
 
-RUN bundle config set --global path 'vendor/bundle'
+# RUN bundle config set --global path 'vendor/bundle'
 
 WORKDIR /src
 
